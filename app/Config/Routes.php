@@ -33,6 +33,8 @@ $routes->get('/', 'Pages::index');
 $routes->get('/about', 'Pages::about');
 $routes->get('/contact', 'Pages::contact');
 $routes->get('/comic', 'Comic::index');
+$routes->get('/comic/create', 'Comic::create');  //Urutan itu pengaruh, kalo ini ditaro dibawah, errror mulu ntar
+$routes->post('/comic/save', 'Comic::save');
 $routes->get('/comic/(:segment)', 'Comic::detail/$1');
 /*
  * --------------------------------------------------------------------

@@ -5,6 +5,7 @@
   <div class="row">
     <div class="col">
       <h4>My Comic Collection</h4>
+      <a href="<?= base_url('comic/create') ?>" class="btn btn-primary mb-3">Tambah Data</a>
       <table class="table">
         <thead>
           <tr>
