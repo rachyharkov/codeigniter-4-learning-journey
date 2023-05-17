@@ -25,7 +25,7 @@
               </td>
               <td><?= $value['title'] ?></td>
               <td>
-                <a href="#" class="btn btn-success">Lihat</a>
+                <a href="<?= base_url('comic/'.$value['slug']) ?>" class="btn btn-success">Lihat</a>
               </td>
             </tr>
           <?php
