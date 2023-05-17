@@ -11,10 +11,7 @@ class Pages extends BaseController
         $data = [
             'title' => 'Home | My Webshet'
         ];
-
-        echo view('layout/header', $data);
-        echo view('pages/home');
-        echo view('layout/footer');
+        echo view('pages/home', $data);
     }
 
     public function about()
@@ -22,8 +19,28 @@ class Pages extends BaseController
         $data = [
             'title' => 'About | My Webshet'
         ];
-        echo view('layout/header', $data);
-        echo view('pages/about');
-        echo view('layout/footer');
+
+        echo view('pages/about', $data);
+    }
+
+    public function contact()
+    {
+        $data = [
+            'title' => 'Contact | My Webshet',
+            'alamat' => [
+                [
+                    'tipe' => 'rumah',
+                    'alamat' => 'jl. abc no. 123',
+                    'kota' => 'bandung'
+                ],
+                [
+                    'tipe' => 'kantor',
+                    'alamat' => 'jl. setiabudi no. 193',
+                    'kota' => 'bandung'
+                ]
+            ]
+        ];
+
+        echo view('pages/contact', $data);
     }
 }
