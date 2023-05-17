@@ -4,8 +4,13 @@
 <div class="container mt-3">
   <div class="row">
     <div class="col">
-      <h4>My Comic Collection</h4>
       <a href="<?= base_url('comic/create') ?>" class="btn btn-primary mb-3">Tambah Data</a>
+      <h4>My Comic Collection</h4>
+      <?php if (session()->getFlashdata('pesan')) : ?>
+        <div class="alert alert-success" role="alert">
+          <?= session()->getFlashdata('pesan') ?>
+        </div>
+      <?php endif ?>
       <table class="table">
         <thead>
           <tr>
@@ -37,4 +42,12 @@
     </div>
   </div>
 </div>
+<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div> 
 <?= $this->endSection() ?>

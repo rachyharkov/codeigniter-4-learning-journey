@@ -9,31 +9,48 @@
           <?= csrf_field() ?>
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" aria-describedby="titleHelp">
-            <small id="titleHelp" class="form-text text-muted">Masukkan Title komik.</small>
+            <input type="text" class="form-control <?= (session('validation')?->hasError('title')) ? 'is-invalid' : '' ?>" id="title" name="title" aria-describedby="titleHelp" value="<?= old('title') ?>" autofocus>
+            <div class="invalid-feedback">
+              <?= session('validation')?->getError('title') ?>
+            </div>
           </div>
           <div class="form-group">
             <label for="volume">Volume</label>
-            <input type="number" class="form-control" id="volume" name="volume" aria-describedby="volumeHelp">
+            <input type="number" class="form-control  <?= (session('validation')?->hasError('volume')) ? 'is-invalid' : '' ?>" id="volume" name="volume" aria-describedby="volumeHelp" value="<?= old('volume') ?>">
+            <div class="invalid-feedback">
+              <?= session('validation')?->getError('volume') ?>
+            </div>
           </div>
           <div class="form-group">
             <label for="author">Author</label>
-            <input type="text" class="form-control" id="author" name="author" aria-describedby="authorHelp">
-            <small id="authorHelp" class="form-text text-muted">Masukkan nama Author komik.</small>
+            <input type="text" class="form-control  <?= (session('validation')?->hasError('author')) ? 'is-invalid' : '' ?>" id="author" name="author" aria-describedby="authorHelp" value="<?= old('author') ?>">
+            <div class="invalid-feedback">
+              <?= session('validation')?->getError('author') ?>
+            </div>
           </div>
           <div class="form-group">
             <label for="publisher">Publisher</label>
-            <input type="text" class="form-control" id="publisher" name="publisher" aria-describedby="publisherHelp">
-            <small id="publisherHelp" class="form-text text-muted">Masukkan nama publisher.</small>
+            <input type="text" class="form-control  <?= (session('validation')?->hasError('publisher')) ? 'is-invalid' : '' ?>" id="publisher" name="publisher" aria-describedby="publisherHelp" value="<?= old('publisher') ?>">
+            <div class="invalid-feedback">
+              <?= session('validation')?->getError('publisher') ?>
+            </div>
           </div>
           <div class="form-group">
             <label for="cover">Cover</label>
-            <input type="text" class="form-control" id="cover" name="cover" aria-describedby="cover">
-            <small id="cover" class="form-text text-muted">Masukkan nama file cover.</small>
+            <input type="text" class="form-control  <?= (session('validation')?->hasError('cover')) ? 'is-invalid' : '' ?>" id="cover" name="cover" aria-describedby="cover" value="<?= old('cover') ?>">
+            <div class="invalid-feedback">
+              <?= session('validation')?->getError('cover') ?>
+            </div>
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" aria-describedby="descriptionHelp" name="description" rows="3"></textarea>
+            <textarea class="form-control  <?= (session('validation')?->hasError('description')) ? 'is-invalid' : '' ?>" id="description" aria-describedby="descriptionHelp" name="description" rows="3">
+              <?= old('description') ?>
+            </textarea>
+            <div class="invalid-feedback">
+              <?= session('validation')?->getError('description') ?>
+            </div>
+          </div>
           <button type="submit" class="btn btn-primary">Tambah Data</button>
         </form>
       </div>
