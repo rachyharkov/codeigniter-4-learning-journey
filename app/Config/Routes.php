@@ -35,7 +35,9 @@ $routes->get('/contact', 'Pages::contact');
 
 $routes->get('/comic', 'Comic::index');
 $routes->get('/comic/create', 'Comic::create');  //Urutan itu pengaruh, kalo ini ditaro dibawah, errror mulu ntar
+$routes->get('/comic/edit/(:segment)', 'Comic::edit/$1');
 $routes->post('/comic/save', 'Comic::save');
+$routes->post('/comic/update/(:any)', 'Comic::update/$1');
 $routes->delete('/comic/(:num)', 'Comic::delete/$1');
 $routes->get('/comic/(:any)', 'Comic::detail/$1');
 /*

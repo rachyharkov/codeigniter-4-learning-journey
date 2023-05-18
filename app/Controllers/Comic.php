@@ -121,4 +121,85 @@ class Comic extends BaseController
         session()->setFlashdata('pesan', 'Data berhasil dihapus.');
         return redirect()->to('/comic');
     }
+
+    public function edit($slug)
+    {
+        $data = [
+            'title' => 'Form Edit Data Comic | My Webshet',
+            'comic' => $this->comicModel->getComic($slug),
+            'validation' => \Config\Services::validation()
+        ];
+
+        return view('comic/edit', $data);
+    }
+
+    public function update($id)
+    {
+        $oldComic = $this->comicModel->getComic($this->request->getVar('slug'));
+        if($oldComic['title'] == $this->request->getVar('title')) {
+            $rule_title = 'required';
+        } else {
+            $rule_title = 'required|is_unique[comics.title]';
+        }
+
+        $slug = url_title($this->request->getVar('title'), '-', true);
+
+        if(!$this->validate([
+            'title' => [
+                'rules' => $rule_title,
+                'errors' => [
+                    'required' => '{field} harus di isi.',
+                    'is_unique' => 'Terdeteksi bahwa {field} yang diisi sudah ada, silahkan isi {field} dengan nama lain.'
+                ]
+            ],
+            'author' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus di isi.'
+                ]
+            ],
+            'publisher' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus di isi.'
+                ]
+            ],
+            'volume' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus di isi.'
+                ]
+            ],
+            'description' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus di isi.'
+                ]
+            ],
+            'cover' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus di isi.'
+                ]
+            ]
+        ])) {
+            $validation = \Config\Services::validation();
+            // dd($validation);
+            return redirect()->to('/comic/edit/'.$oldComic['slug'])->withInput()->with('validation', $validation);
+        }
+
+        $this->comicModel->save([
+            'id' => $id,
+            'title' => $this->request->getVar('title'),
+            'slug' => $slug,
+            'author' => $this->request->getVar('author'),
+            'publisher' => $this->request->getVar('publisher'),
+            'volume' => $this->request->getVar('volume'),
+            'description' => $this->request->getVar('description'),
+            'cover' => $this->request->getVar('cover')
+        ]);
+
+        session()->setFlashdata('pesan', 'Data berhasil diubah.');
+        return redirect()->to('/comic');
+    }
 }
