@@ -44,9 +44,7 @@
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control  <?= (session('validation')?->hasError('description')) ? 'is-invalid' : '' ?>" id="description" aria-describedby="descriptionHelp" name="description" rows="3">
-              <?= old('description') ?>
-            </textarea>
+            <textarea class="form-control  <?= (session('validation')?->hasError('description')) ? 'is-invalid' : '' ?>" id="description" aria-describedby="descriptionHelp" name="description" rows="3"><?= old('description') ?></textarea>
             <div class="invalid-feedback">
               <?= session('validation')?->getError('description') ?>
             </div>

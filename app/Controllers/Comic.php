@@ -111,18 +111,14 @@ class Comic extends BaseController
             'cover' => $request['cover']
         ]);
 
-        // echo '
-        //     <script type="text/javascript">
-        //         const toastLiveExample = document.getElementById("liveToast")
-
-        //         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-        //         toastBootstrap.show()
-
-        //         window.location.href = "' . base_url('comic') . '";
-        //     </script>
-        // ';
-
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
+        return redirect()->to('/comic');
+    }
+
+    public function delete($id)
+    {
+        $this->comicModel->delete($id);
+        session()->setFlashdata('pesan', 'Data berhasil dihapus.');
         return redirect()->to('/comic');
     }
 }
